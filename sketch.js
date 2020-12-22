@@ -6,8 +6,10 @@ let board = [
 
 let players = ["X", "O"];
 
+let currentPlayer;
 function setup() {
   createCanvas(400, 400);
+  currentPlayer = random(players);
 }
 
 function draw() {
