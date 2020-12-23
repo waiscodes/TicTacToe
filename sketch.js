@@ -10,12 +10,17 @@ let available = [];
 
 function setup() {
   createCanvas(400, 400);
-  currentPlayer = random(players);
+  frameRate(30);
+  currentPlayer = floor(random(players.length));
   for (let j = 0; j < 3; j++) {
     for (let i = 0; i < 3; i++) {
       available.push([i, j]);
     }
   }
+}
+
+function equals3(a, b, c) {
+  return a == b && b == c && a != "";
 }
 
 function checkWinner() {
@@ -86,6 +91,17 @@ function draw() {
       }
     }
   }
-
-  nextTurn();
+  let result = checkWinner();
+  if (result != null) {
+    noLoop();
+    let resultP = createP("");
+    resultP.style("font-size", "32pt");
+    if (result == "tie") {
+      resultP.html("Tie!");
+    } else {
+      resultP.html(`${result} wins!`);
+    }
+  } else {
+    nextTurn();
+  }
 }
