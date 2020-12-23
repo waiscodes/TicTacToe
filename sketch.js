@@ -4,9 +4,11 @@ let board = [
   ["", "", ""],
 ];
 
+let ai = "X";
 let players = ["X", "O"];
-let currentPlayer;
 let available = [];
+let human = "O";
+let currentPlayer = human;
 
 function setup() {
   createCanvas(400, 400);
@@ -55,7 +57,7 @@ function checkWinner() {
   }
 }
 
-function nextTurn() {
+function bestMove() {
   let index = floor(random(available.length));
   let spot = available.splice(index, 1)[0];
   let i = spot[0];
@@ -102,6 +104,6 @@ function draw() {
       resultP.html(`${result} wins!`);
     }
   } else {
-    nextTurn();
+    bestMove();
   }
 }
